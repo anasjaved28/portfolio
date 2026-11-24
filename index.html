@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Anas Javed — BTech CSE Student building production-ready full-stack web platforms, computer vision pipelines, and intelligent systems."
+    />
+    <title>Anas Javed | BTech CSE — AI & Full-Stack Engineer</title>
+
+    <!-- Prevent theme flash before first paint -->
+    <script>
+      (function () {
+        const saved = localStorage.getItem("portfolio-theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        if (saved === "dark" || (!saved && prefersDark)) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+
+  <body>
+    <!-- Animated Dot Matrix Background -->
+    <canvas id="dot-matrix-canvas" aria-hidden="true"></canvas>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <!-- Main Page Wrapper -->
+    <div class="container">
+      <!-- ==================== 1. TOP NAVBAR ==================== -->
+      <header class="navbar surface-card">
+        <a href="#" class="logo-badge">
+          <span class="logo-dots-box">
+            <span class="logo-dot"></span>
+            <span class="logo-dot"></span>
+          </span>
+          <span class="logo-text">Anas Javed</span>
+        </a>
+
+        <nav class="nav-desktop" aria-label="Primary Navigation">
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button
+            id="themeToggleBtn"
+            type="button"
+            class="brutal-btn theme-toggle-btn"
+            aria-label="Toggle Dark Mode"
+            title="Switch Light / Dark Theme"
+          >
+            <span id="themeIcon" aria-hidden="true">🌙</span>
+            <span id="themeLabel" class="hide-mobile">Dark</span>
+          </button>
+
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="github-nav-link hide-mobile"
+          >
+            <svg
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            GitHub
+          </a>
+
+          <a href="#contact" class="brutal-btn btn-lavender">
+            <span>Get in Touch</span>
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <button
+            id="mobileMenuBtn"
+            type="button"
+            class="mobile-menu-btn"
+            aria-label="Toggle Menu"
+            aria-expanded="false"
+          >
+            <svg
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Mobile Dropdown Navigation -->
+      <div id="mobileMenu" class="mobile-menu surface-card hidden">
+        <a href="#projects" class="mobile-nav-link">Projects (6)</a>
+        <a href="#skills" class="mobile-nav-link">Skills &amp; Stack</a>
+        <a href="#about" class="mobile-nav-link">About &amp; Education</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <a
+          href="https://github.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mobile-github-btn"
+        >
+          GitHub Profile ↗
+        </a>
+      </div>
+
+      <!-- ==================== 2. HERO BENTO GRID (L-SHAPED CUTOUT) ==================== -->
+      <section id="about" class="hero-section">
+        <div class="hero-wrapper">
+          <div class="hero-surface">
+            <!-- Desktop L-Cutout SVG Outline -->
+            <svg
+              class="hero-l-svg"
+              viewBox="0 0 1320 540"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                id="heroLShapePath"
+                d="M 16,1 L 1304,1 Q 1319,1 1319,16 L 1319,356 Q 1319,371 1304,371 L 744,371 Q 729,371 729,386 L 729,524 Q 729,539 714,539 L 16,539 Q 1,539 1,524 L 1,16 Q 1,1 16,1 Z"
+                fill="#F6FDF7"
+                stroke="#0B261E"
+                stroke-width="1.5"
+              />
+            </svg>
+
+            <div class="hero-top-grid">
+              <!-- Left Copy -->
+              <div class="hero-copy">
+                <div class="hero-badge">
+                  <span class="dot-emerald"></span>
+                  <span>AI &amp; FULL-STACK SOFTWARE ENGINEER</span>
+                </div>
+
+                <h1 class="hero-title">
+                  Build, Ship, Scale<br />
+                  <span class="hero-accent">AI &amp; Full-Stack</span><br />
+                  Applications
+                </h1>
+
+                <p class="hero-subtitle">
+                  Anas Javed is a BTech CSE student building production-ready
+                  web platforms, computer vision pipelines, and intelligent
+                  systems.
+                </p>
+              </div>
+
+              <!-- Right Neo-Brutalist Profile Photo Frame -->
+              <div class="hero-photo-col">
+                <div class="photo-frame-wrap">
+                  <div class="photo-offset-bg" aria-hidden="true"></div>
+                  <div class="photo-card brutal-card surface-card">
+                    <img
+                      src="anas-photo.jpg"
+                      alt="Anas Javed — BTech CSE AI & Full-Stack Engineer"
+                      class="hero-photo"
+                    />
+                    <div class="photo-caption">
+                      <span class="photo-status">
+                        <span class="dot-emerald-bordered"></span>
+                        <span>Anas Javed</span>
+                      </span>
+                      <span class="muted-label">CSE '28</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom-Left inside L-Notch -->
+            <div class="hero-bottom-left">
+              <button
+                type="button"
+                data-action="open-resume"
+                class="brutal-btn btn-emerald-pill"
+              >
+                <span>BTech CSE • Class of 2028</span>
+                <span aria-hidden="true">→</span>
+              </button>
+
+              <ul class="hero-metrics">
+                <li>
+                  <span class="bullet-accent">▹</span> 6+ End-to-End Full-Stack
+                  &amp; AI Projects
+                </li>
+                <li>
+                  <span class="bullet-accent">▹</span> MERN, SQL, PyTorch &amp;
+                  Computer Vision
+                </li>
+                <li>
+                  <span class="bullet-accent">▹</span> Containerized &amp;
+                  Cloud-Ready Workflows
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Bottom-Right Nested Bento Action Cards -->
+          <div class="hero-nested-cards">
+            <a
+              href="#projects"
+              class="brutal-card hero-forest-card action-bento-card"
+            >
+              <div class="action-card-title">Explore<br />Projects</div>
+              <div class="action-card-footer">
+                <span class="icon-square">→</span>
+              </div>
+            </a>
+
+            <a
+              href="#skills"
+              class="brutal-card card-lavender action-bento-card"
+            >
+              <div class="action-card-title">Tech Stack &amp;<br />Skills</div>
+              <div class="action-card-footer">
+                <span class="icon-square-dark">→</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 3. FEATURED PROJECTS SECTION ==================== -->
+      <section id="projects" class="section-block">
+        <div class="section-header-row">
+          <div>
+            <span class="section-eyebrow"
+              >01 // Selected Engineering Builds</span
+            >
+            <h2 class="section-heading">
+              Featured
+              <span class="section-heading-pill accent-lavender">Projects</span>
+            </h2>
+          </div>
+
+          <div id="projectFilters" class="filter-group">
+            <button
+              type="button"
+              data-filter="all"
+              class="filter-btn active-filter brutal-btn"
+            >
+              All (6)
+            </button>
+            <button
+              type="button"
+              data-filter="ai"
+              class="filter-btn brutal-btn"
+            >
+              AI &amp; Computer Vision
+            </button>
+            <button
+              type="button"
+              data-filter="fullstack"
+              class="filter-btn brutal-btn"
+            >
+              Full-Stack Web
+            </button>
+            <button
+              type="button"
+              data-filter="systems"
+              class="filter-btn brutal-btn"
+            >
+              Systems &amp; Audio
+            </button>
+          </div>
+        </div>
+
+        <div id="projectsGrid" class="projects-grid"></div>
+      </section>
+
+      <!-- ==================== 4. SKILLS & ENGINEERING STACK BENTO ==================== -->
+      <section id="skills" class="section-block">
+        <div class="section-header-single">
+          <span class="section-eyebrow">02 // Technical Capabilities</span>
+          <h2 class="section-heading">
+            Skills &amp;
+            <span class="section-heading-pill">Engineering Stack</span>
+          </h2>
+        </div>
+
+        <div id="skillsBentoGrid" class="skills-grid"></div>
+      </section>
+
+      <!-- ==================== 5. BOTTOM CTA BENTO & FOOTER ==================== -->
+      <section id="contact" class="cta-shell section-block">
+        <div class="cta-main-grid">
+          <div class="cta-intro">
+            <p class="cta-lead">
+              Open to Software Engineering, Full-Stack &amp; AI/ML internships,
+              collaborations, and exciting builds.
+            </p>
+            <div class="response-pill">
+              <span class="dot-emerald pulse"></span>
+              <span>Response time: &lt; 24 hours</span>
+            </div>
+          </div>
+
+          <div class="cta-cards-stack">
+            <div class="cta-row-top">
+              <a
+                href="#projects"
+                class="brutal-card card-emerald cta-card-large"
+              >
+                <div class="cta-card-heading">Explore All<br />6 Projects</div>
+                <div class="cta-card-bottom">
+                  <ul class="cta-bullets">
+                    <li>YOLO11 + BoT-SORT ReID Vision</li>
+                    <li>Multi-Device Bluetooth AudioLink</li>
+                    <li>MERN &amp; SQL Production Apps</li>
+                  </ul>
+                  <span class="icon-square-dark lg">→</span>
+                </div>
+              </a>
+
+              <button
+                type="button"
+                data-action="open-resume"
+                class="brutal-card card-lavender cta-card-small"
+              >
+                <div class="cta-card-heading">Download<br />Resume / CV</div>
+                <div class="action-card-footer">
+                  <span class="icon-square-dark lg">↗</span>
+                </div>
+              </button>
+            </div>
+
+            <div class="cta-row-bottom">
+              <button
+                type="button"
+                data-action="copy-email"
+                class="brutal-card hero-forest-card cta-card-small"
+              >
+                <div class="cta-card-heading text-emerald">
+                  Let's<br />Connect
+                </div>
+                <div class="cta-card-bottom">
+                  <span class="mono-tiny">Click to copy email</span>
+                  <span class="icon-square lg">→</span>
+                </div>
+              </button>
+
+              <div class="surface-card cta-card-large">
+                <div class="cta-card-heading">Send a Quick<br />Message</div>
+                <form id="quickMessageForm" class="quick-form">
+                  <div class="quick-input-wrap">
+                    <input
+                      id="quickEmailInput"
+                      type="text"
+                      required
+                      placeholder="your email or quick note..."
+                      class="quick-input"
+                    />
+                    <button type="submit" class="btn-forest-submit">
+                      Send
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+          <div class="footer-brand">
+            <a href="#" class="logo-badge">
+              <span class="logo-dots-box">
+                <span class="logo-dot"></span>
+                <span class="logo-dot"></span>
+              </span>
+              <span class="logo-text">Anas Javed</span>
+            </a>
+            <p class="footer-bio">
+              BTech CSE Student crafting intelligent AI pipelines and resilient
+              full-stack web software.
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h4>Featured Projects</h4>
+            <ul>
+              <li>
+                <button type="button" data-project-id="people-counting">
+                  People Counting CV
+                </button>
+              </li>
+              <li>
+                <button type="button" data-project-id="audiolink">
+                  AudioLink
+                </button>
+              </li>
+              <li>
+                <button type="button" data-project-id="mealbridge">
+                  MealBridge
+                </button>
+              </li>
+              <li>
+                <button type="button" data-project-id="airbnb">
+                  Airbnb Clone
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Tech Stack</h4>
+            <ul>
+              <li><a href="#skills">MERN + SQL</a></li>
+              <li><a href="#skills">PyTorch &amp; YOLO11</a></li>
+              <li><a href="#skills">Transformers &amp; RAG</a></li>
+              <li><a href="#skills">Docker &amp; Git</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Education</h4>
+            <ul>
+              <li>BTech in CSE</li>
+              <li>Computer Vision &amp; AI</li>
+              <li>Full-Stack Engineering</li>
+              <li>
+                <button
+                  type="button"
+                  data-action="open-resume"
+                  class="bold-link"
+                >
+                  Download CV
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >GitHub</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://kaggle.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Kaggle</a
+                >
+              </li>
+              <li>
+                <button type="button" data-action="copy-email">Email</button>
+              </li>
+            </ul>
+          </div>
+        </footer>
+      </section>
+    </div>
+
+    <!-- ==================== PROJECT ARCHITECTURE MODAL ==================== -->
+    <div
+      id="projectModal"
+      class="modal-backdrop hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal-box">
+        <div class="modal-header">
+          <div>
+            <span id="modalBadge" class="modal-badge">Category</span>
+            <h3 id="modalTitle" class="modal-title">Project Title</h3>
+          </div>
+          <button
+            type="button"
+            data-action="close-project-modal"
+            aria-label="Close modal"
+            class="brutal-btn modal-close-btn"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <p id="modalDescription" class="modal-desc"></p>
+
+          <div class="modal-highlight-box">
+            <h4 class="modal-subhead">
+              System Architecture &amp; Key Implementation Details
+            </h4>
+            <ul id="modalHighlights" class="modal-list"></ul>
+          </div>
+
+          <div>
+            <h4 class="modal-subhead muted">Technologies Used</h4>
+            <div id="modalTags" class="tag-list"></div>
+          </div>
+
+          <div class="modal-footer">
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="brutal-btn btn-forest"
+            >
+              <span>View Source on GitHub</span>
+              <span>↗</span>
+            </a>
+            <button
+              type="button"
+              data-action="close-project-modal"
+              class="brutal-btn btn-lavender"
+            >
+              Done Inspecting
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== RESUME / CV MODAL ==================== -->
+    <div
+      id="resumeModal"
+      class="modal-backdrop hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Curriculum Vitae"
+    >
+      <div class="modal-box wide">
+        <div class="modal-header">
+          <span class="modal-badge lavender"
+            >CURRICULUM VITAE // ANAS JAVED</span
+          >
+          <div class="modal-toolbar">
+            <button
+              type="button"
+              data-action="download-resume"
+              class="brutal-btn btn-emerald-sm"
+            >
+              Download .TXT
+            </button>
+            <button
+              type="button"
+              data-action="print-resume"
+              class="brutal-btn btn-forest-sm"
+            >
+              Print / Save PDF
+            </button>
+            <button
+              type="button"
+              data-action="close-resume-modal"
+              aria-label="Close Resume Modal"
+              class="brutal-btn modal-close-btn"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <div id="resumePrintableArea" class="resume-content">
+          <div class="resume-top">
+            <div>
+              <h2>Anas Javed</h2>
+              <p>
+                BTech Computer Science &amp; Engineering Student • AI &amp;
+                Full-Stack Developer
+              </p>
+            </div>
+            <div class="resume-contact">
+              <div>github.com/anasjaved</div>
+              <div>anas.javed.dev@example.com</div>
+            </div>
+          </div>
+
+          <div class="resume-section">
+            <h3>Technical Skills</h3>
+            <div class="resume-skills-grid">
+              <div class="modal-highlight-box">
+                <strong>Full-Stack Web:</strong>
+                MongoDB, Express.js, React, Node.js (MERN), SQL, REST APIs,
+                Streamlit
+              </div>
+              <div class="modal-highlight-box">
+                <strong>AI &amp; Machine Learning:</strong>
+                Python, PyTorch, Scikit-learn, Kaggle, CNN, Transformers, RAG,
+                Ultralytics YOLO11
+              </div>
+              <div class="modal-highlight-box">
+                <strong>DevOps &amp; Tools:</strong>
+                Git, GitHub, Docker, Linux Containers, System Design
+              </div>
+            </div>
+          </div>
+
+          <div class="resume-section">
+            <h3>Key Engineering Projects</h3>
+            <div class="resume-projects-list">
+              <div>
+                <strong
+                  >1. People Counting &amp; Re-Identification System (YOLO11,
+                  BoT-SORT ReID, Streamlit)</strong
+                >
+                <p>
+                  Real-time computer vision pipeline filtering class 0 (person)
+                  to track active frame occupancy and cumulative unique
+                  individuals across live webcams and video feeds.
+                </p>
+              </div>
+              <div>
+                <strong
+                  >2. AudioLink — Multi-Device Bluetooth Audio
+                  Broadcaster</strong
+                >
+                <p>
+                  Web application engineered to route and broadcast a single
+                  audio stream simultaneously across multiple paired Bluetooth
+                  output devices.
+                </p>
+              </div>
+              <div>
+                <strong
+                  >3. MealBridge — NGO &amp; Restaurant Food Donation
+                  Platform</strong
+                >
+                <p>
+                  Full-stack platform connecting restaurants with local NGOs to
+                  coordinate real-time surplus food donations and minimize
+                  waste.
+                </p>
+              </div>
+              <div>
+                <strong
+                  >4. Airbnb Clone, Bookstore E-Commerce &amp; Weather
+                  Dashboard</strong
+                >
+                <p>
+                  End-to-end web applications built with MERN + SQL featuring
+                  authentication, booking workflows, catalog search, cart logic,
+                  and live weather APIs.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
